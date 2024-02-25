@@ -25,6 +25,19 @@ class bufferedTokenTool:
                 if not self.currentbuffer:
                     raise ValueError("could not find value")
 
+    def advanceOne(self, count=1):
+
+        i = 0
+        c = ""
+
+        while i < count:
+            self.IfNeededGrabNextBuffer()
+            c = c + self.currentbuffer[self.startI]
+            self.startI = self.startI + 1
+            i = i +1
+        
+        return c
+        
 
     def advanceTo(self, str, str1 = None):
         """
@@ -59,7 +72,6 @@ class bufferedTokenTool:
 
         # there is no do-while in python... 
         while True:
-            
             self.IfNeededGrabNextBuffer()
 
             # grab current character

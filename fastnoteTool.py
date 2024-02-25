@@ -1,4 +1,5 @@
 import bufferedTokenTool
+import json
 
 class fastNoteTool:
     """
@@ -30,6 +31,7 @@ class fastNoteTool:
         self.OnCRecord = print
         self.OnFileId = print
         self.Verbose = _verbose
+        self.Folders = []
 
     def printrecord(self,record:list, number:int):
         print(f"==========Record: {number}===========")
@@ -97,11 +99,33 @@ class fastNoteTool:
                     print("=============== end reached ==============")
                 break
 
-        tokenconst = "{[!*|@]}{}{[!*|@]}{"
+        
+        tokenconst = "{[!*|@]}"
         tokenstr = ""
 
+        # there can be two of the tokenconst's which surround a list of 
+        # folder names.
         while (tokenstr != tokenconst):
-            tokenstr = tokenstr+ btt.advanceTo("{")
+            tokenstr = tokenstr+ btt.advanceOne()
+
+        nextfield = btt.advanceOne(3)
+
+        if nextfield == "{\"f":
+            nextfield = nextfield + btt.advanceTo("}")
+            self.Folders =  json.loads(nextfield)["folders"].split('\n')
+
+            nextfield = btt.advanceTo("}")
+            if nextfield != tokenconst:
+                raise f"malformed file, expected sections token: {tokenconst} \n got {nextfield}"
+
+        else:
+            # advance to next token constant instance.
+            nextfield = nextfield + btt.advanceTo("}")
+            if nextfield != "{}"+tokenconst:
+                raise f"malformed file, should have found empty folders list and token constant."
+
+            self.Folders = []
+
 
         if self.Verbose:
             print(tokenstr)
