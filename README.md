@@ -24,3 +24,4 @@ Implement these event handlers to capture the data as its being read.
   2. OnCRecord: Returns the content record with the note, etc
   3. OnFileId: Returns the fileid of the export batch 
 
+The Main_FastNoteImporter.py  program will attempt to convert and interpret the output of these modules and drop them into a sqlite database copied from the empty one included in this project.  So far as I can tell this portion of my own project is completed.
