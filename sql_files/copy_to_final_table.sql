@@ -6,7 +6,8 @@ insert into UnifiedContent ("Key",
                             Starred,
                             Reviewed,
                             Complete,
-                            Contents )
+                            Contents,
+                            FileSource )
 select i."Key",
        i.EpochTime,
        i.NoteLength,
@@ -15,7 +16,8 @@ select i."Key",
        i.Starred,
        i.Reviewed,
        i.Complete,
-       c.Contents
+       c.Contents,
+       i.FileSource
 from noteindexes i
 inner join notecontents c
 on c."Key" = i."Key"

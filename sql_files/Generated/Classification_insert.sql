@@ -1,0 +1,1 @@
+INSERT INTO Classification (Key, ClassKey) VALUES (?, ?);

@@ -1,0 +1,1 @@
+DELETE FROM UnifiedContent WHERE Filename=?;

@@ -1,0 +1,1 @@
+SELECT * FROM HastTagNoteUpdates LIMIT ? OFFSET ?;

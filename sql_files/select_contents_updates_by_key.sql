@@ -4,8 +4,10 @@ UpdateKey,
 UpdateEpoch,
 Contents,
 ScrollInfo,
-Sha256Sum
+Sha256Sum,
+FileSource
 
   FROM NoteContents_Updates
   where [key] = ?
   order by updateepoch desc 
+  limit 1;

@@ -1,0 +1,1 @@
+INSERT INTO ClassLookup (Key, Name, Code) VALUES (?, ?, ?);

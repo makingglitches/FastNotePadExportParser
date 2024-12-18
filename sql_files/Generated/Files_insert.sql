@@ -1,0 +1,1 @@
+INSERT INTO Files (Filename, FileSha256, Completed) VALUES (?, ?, ?);

@@ -2,6 +2,7 @@
     [Key],
     Contents,
     ScrollInfo,
-    Sha256Sum
-from NoteContents where Key = ?    
+    Sha256Sum,
+    FileSource
+from NoteContents where Key = :Key   
  

@@ -1,0 +1,1 @@
+DELETE FROM NoteContents WHERE Key=?;

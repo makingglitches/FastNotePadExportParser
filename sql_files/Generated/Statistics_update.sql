@@ -1,0 +1,1 @@
+UPDATE Statistics SET Key=?, SavedCount=?, KillingsCount=?, DruggingsCount=?, TheftsCount=?, InformedCount=?, FamilyKilled=? WHERE Key=?;

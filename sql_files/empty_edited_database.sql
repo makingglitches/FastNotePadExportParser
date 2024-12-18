@@ -1,0 +1,11 @@
+delete from Classification;
+delete from HashTagNoteUpdates;
+delete from HashTagNotes;
+delete from Statistics;
+delete from NoteContents_Updates;
+delete from NoteIndexes_Updates;
+delete from NoteContents;
+delete from NoteIndexes;
+delete from UnifiedContentUpdates;
+delete from UnifiedContent;
+delete from Files;

@@ -1,0 +1,1 @@
+SELECT * FROM Classification WHERE ClassKey=? AND Key=?;

@@ -1,0 +1,1 @@
+UPDATE NoteIndexes SET Key=?, EpochTime=?, NoteLength=?, Preview=?, Sha256Sum=?, Reviewed=?, Folder=?, Starred=?, Complete=?, Filename=? WHERE Key=?;

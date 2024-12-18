@@ -1,0 +1,1 @@
+SELECT * FROM NoteContents_Updates WHERE Key=?;

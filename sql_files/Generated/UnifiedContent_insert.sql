@@ -1,0 +1,1 @@
+INSERT INTO UnifiedContent (Key, EpochTime, NoteLength, Sha256Sum, Folder, Starred, Reviewed, Complete, Contents, Filename) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);

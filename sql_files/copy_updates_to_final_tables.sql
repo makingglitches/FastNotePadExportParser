@@ -10,7 +10,8 @@ INSERT INTO UnifiedContentUpdates
    Reviewed,
    Folder,
    Starred,
-   Complete
+   Complete,
+   FileSource
 )
 select i.UpdateKey,
        i."Key", 
@@ -22,7 +23,8 @@ select i.UpdateKey,
        i.Reviewed,
        i.Folder,
        i.Starred,
-       i.Complete 
+       i.Complete,
+       i.FileSource
 from noteindexes_updates i 
 inner join notecontents_updates u 
 on i.UpdateKey = u.UpdateKey

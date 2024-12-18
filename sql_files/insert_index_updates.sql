@@ -9,13 +9,17 @@ INSERT INTO NoteIndexes_Updates (
                                     Folder,
                                     Starred,
                                     Complete,
-                                    Reviewed
+                                    Reviewed,
+                                    FileSource,
+                                    NoContent
                                 )
                                 VALUES (
                                      ?,
                                      ?,
                                      ?,
                                      ?,
+                                    ?,
+                                    ?,
                                     ?,
                                     ?,
                                     ?,

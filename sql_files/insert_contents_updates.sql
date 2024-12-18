@@ -4,9 +4,11 @@ INSERT INTO NoteContents_Updates (
                                      UpdateEpoch,
                                      Contents,
                                      ScrollInfo,
-                                     Sha256Sum
+                                     Sha256Sum,
+                                     FileSource
                                  )
                                  VALUES (
+                                     ?,
                                      ?,
                                      ?,
                                      ?,

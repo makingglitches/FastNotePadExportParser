@@ -1,0 +1,1 @@
+SELECT * FROM NoteIndexes_Updates WHERE Key=?;

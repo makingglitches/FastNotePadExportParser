@@ -1,0 +1,1 @@
+DELETE FROM HashTagsLookup WHERE Term=?;

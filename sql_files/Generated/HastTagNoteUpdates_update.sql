@@ -1,0 +1,1 @@
+UPDATE HastTagNoteUpdates SET Key=?, HashTag=? WHERE HashTag=? AND Key=?;

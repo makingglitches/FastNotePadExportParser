@@ -1,0 +1,1 @@
+SELECT * FROM HashTagNotes WHERE HashTag=?;

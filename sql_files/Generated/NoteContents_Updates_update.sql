@@ -1,0 +1,1 @@
+UPDATE NoteContents_Updates SET UpdateKey=?, Key=?, UpdateEpoch=?, Contents=?, ScrollInfo=?, Sha256Sum=? WHERE UpdateKey=?;

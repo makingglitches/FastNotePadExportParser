@@ -1,0 +1,1 @@
+INSERT INTO Statistics (Key, SavedCount, KillingsCount, DruggingsCount, TheftsCount, InformedCount, FamilyKilled) VALUES (?, ?, ?, ?, ?, ?, ?);

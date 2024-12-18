@@ -1,0 +1,1 @@
+DELETE FROM ClassLookup WHERE Key=?;

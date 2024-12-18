@@ -25,13 +25,14 @@ class fastNoteTool:
 
     Verbose:bool
 
-    def __init__(self, filename: str, _buffersize=1024,_verbose = False) -> None:
+    def __init__(self, filename: str, sha, _buffersize=1024,_verbose = False, ) -> None:
         self.btt = bufferedTokenTool.bufferedTokenTool(filename,_buffersize)
         self.OnIRecord = print
         self.OnCRecord = print
         self.OnFileId = print
         self.Verbose = _verbose
         self.Folders = []
+        self.FileSource = sha
 
     def printrecord(self,record:list, number:int):
         print(f"==========Record: {number}===========")
@@ -40,6 +41,11 @@ class fastNoteTool:
             print(f"Field #{i}: {record[i]}")
 
     def run(self):
+
+       
+
+        print('Processing Indexes')
+        
         btt = self.btt
 
         btt.open()
@@ -67,15 +73,17 @@ class fastNoteTool:
 
         while True:
 
-            rec = []
-            print(recnum)
+            rec = {}
+            trec = []
+            if self.Verbose:
+                print(recnum)
 
             # get record fields for first 9 fields
             for i in range(1,10):
                 nextfield = btt.advanceTo(";").replace("!","").replace("^","").replace(";","")
-                rec.append(nextfield)
-
-            # get last field which is preview.
+                trec.append(nextfield)
+            
+            # get last field whicj is preview.
             #wrong, allow for special characters elsewhere.
             #nextfield = btt.advanceTo("^","\"").replace("^","")
             nextfield = btt.advanceTo("^","\"")
@@ -83,7 +91,15 @@ class fastNoteTool:
             if nextfield[len(nextfield)-1]=="^":
                 nextfield = nextfield[0:len(nextfield)-1]
             
-            rec.append(nextfield)
+            trec.append(nextfield)
+
+            rec['key']=trec[0]
+            rec['epochtime']=float(trec[3])
+            rec['notelength'] = int(trec[6])
+            rec['preview'] = trec[9]
+            rec['folder'] = trec[1]
+            rec['starred'] = True if trec[7] == '1' else False
+            rec['complete'] = True if trec[4] == 'i2' else False
 
             if self.Verbose:
                self.printrecord(rec,recnum)
@@ -91,7 +107,7 @@ class fastNoteTool:
             recnum = recnum + 1 
 
             if self.OnIRecord:
-                self.OnIRecord(recnum,rec)
+                self.OnIRecord(recnum,rec, self.FileSource)
 
             if not nextfield.endswith("\\\"") and nextfield.endswith("\""):
                 endbracket = btt.advanceTo("}")
@@ -102,6 +118,8 @@ class fastNoteTool:
         
         tokenconst = "{[!*|@]}"
         tokenstr = ""
+
+        print('Processing Contents')
 
         # there can be two of the tokenconst's which surround a list of 
         # folder names.
@@ -134,28 +152,29 @@ class fastNoteTool:
         recnum = 0
 
         while True:
-            rec = []
+            rec = {}
 
             # id field
             nextfield = btt.advanceTo(":").replace("\"","").replace("_","").replace(":","")
-            rec.append(nextfield)
+            rec['key'] = nextfield
+            #rec.append(nextfield)
 
             #contents field
             nextfield = btt.advanceTo("\"") + btt.advanceTo("\"") + btt.advanceTo(",","}")
             endbracket = nextfield[len(nextfield)-1] == "}"
             nextfield = nextfield[1:len(nextfield)-2] if len(nextfield) > 3 else nextfield
-            rec.append(nextfield)
+            rec['contents'] = nextfield
+            #rec.append(nextfield)
 
             # in the proper ordering of things this only happens at the end of the file.
             if endbracket:
-                rec.append("")
-              
+                rec['scrolly']="" 
                 if self.Verbose:
                       self.printrecord(rec,recnum)
                       print("==============end record contents ==========")
               
                 if self.OnCRecord:
-                    self.OnCRecord(recnum,rec)
+                    self.OnCRecord(recnum,rec, self.FileSource)
               
                 break
 
@@ -168,11 +187,11 @@ class fastNoteTool:
                 astr = astr + btt.advanceTo(',','0').replace(":0","").replace(',',"")
                 nextfield = nextfield + astr
                 astr = btt.advanceTo("_","}")
-            
-            rec.append(nextfield)
+            rec['scrolly'] = nextfield
+            #rec.append(nextfield)
 
             if self.OnCRecord:
-                self.OnCRecord(recnum,rec)
+                self.OnCRecord(recnum,rec, self.FileSource)
 
             if self.Verbose:
                 self.printrecord(rec,recnum)
@@ -180,10 +199,11 @@ class fastNoteTool:
             recnum = recnum+1
 
             if '}' in astr:
-                print("==============end record contents ==========")
+                if self.Verbose:
+                    print("==============end record contents ==========")
                 break
 
-        print(f"found {recnum} record contents")
+        print(f"found {recnum} records")
 
         btt.close()
                 

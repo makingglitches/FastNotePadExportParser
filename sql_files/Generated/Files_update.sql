@@ -1,0 +1,1 @@
+UPDATE Files SET Filename=?, FileSha256=?, Completed=? WHERE Filename=?;

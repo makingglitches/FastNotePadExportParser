@@ -45,18 +45,18 @@ def countUnicodeChars(s):
             continue
 
    
-    print (len(s))
-    print (s)
-    print (len(b))
-    print (b)
+    # print (len(s))
+    # print (s)
+    # print (len(b))
+    # print (b)
 
     sum = 0 
 
     for p in spos:
         sum = sum + p[1]
-        print(p)
+    #     print(p)
 
-    print(len(b) - sum  + len(spos))
+    # print(len(b) - sum  + len(spos))
 
     
     return {'chars':spos, 

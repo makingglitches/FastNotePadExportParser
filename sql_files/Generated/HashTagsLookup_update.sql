@@ -1,0 +1,1 @@
+UPDATE HashTagsLookup SET Term=? WHERE Term=?;

@@ -1,0 +1,1 @@
+INSERT INTO NoteIndexes_Updates (UpdateKey, Key, UpdateTime, EpochTime, NoteLength, Preview, Sha256Sum, Reviewed, Folder, Starred, Complete, FileName) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);

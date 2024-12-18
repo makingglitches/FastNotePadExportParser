@@ -1,0 +1,1 @@
+DELETE FROM Classification WHERE Key=?;

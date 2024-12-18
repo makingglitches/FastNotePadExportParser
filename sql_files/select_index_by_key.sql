@@ -7,5 +7,6 @@ Sha256Sum,
 Reviewed,
 Folder,
 Starred,
-Complete
+Complete,
+FileSource
 from NoteIndexes where [Key] = ?

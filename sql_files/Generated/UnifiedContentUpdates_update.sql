@@ -1,0 +1,1 @@
+UPDATE UnifiedContentUpdates SET UpdateKey=?, Key=?, UpdateEpoch=?, Contents=?, Sha256Sum=?, EpochTime=?, NoteLength=?, Reviewed=?, Folder=?, Starred=?, Complete=?, Filename=? WHERE UpdateKey=?;

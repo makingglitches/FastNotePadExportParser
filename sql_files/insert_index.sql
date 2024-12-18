@@ -6,10 +6,12 @@ INSERT INTO NoteIndexes (
                             Sha256Sum,
                             Folder,
                             Starred,
-                            Complete
+                            Complete,
+                            FileSource
 
                         )
                         VALUES (
+                            ?,
                             ?,
                             ?,
                             ?,
